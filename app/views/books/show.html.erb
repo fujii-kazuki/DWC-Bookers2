@@ -1,2 +1,71 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="col-3">
+  <h2>User info</h2>
+  <%= image_tag @user.get_profile_image(100, 100) %>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>name</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to edit_user_path(@user), class:'btn btn-outline-secondary btn-block mt-3 mb-5' do %>
+    <i class="fa-solid fa-user-gear"></i>
+  <% end %>
+
+  <h2>New Book</h2>
+
+  <%= form_with model: @book, method: :post do |f| %>
+    <div class="form-group">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body, 'Opinion' %><br>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+
+    <%= f.submit 'Create Book', class:'btn btn-success' %>
+  <% end %>
+</div>
+
+<div class="col-8 offset-1">
+  <h2>Book detail</h2>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(@found_book.user) do %>
+            <%= image_tag @found_book.user.get_profile_image(100, 100) %>
+            <br>
+            <%= @found_book.user.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to book_path(@found_book) do %>
+            <%= @found_book.title %>
+          <% end %>
+        </td>
+        <td>
+          <%= @found_book.body %>
+        </td>
+
+        <% if @found_book.user == current_user %>
+          <td>
+            <%= link_to 'Edit', edit_book_path(@found_book), class: 'btn btn-success btn-sm' %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', book_path(@found_book), method: :delete, class: 'btn btn-danger btn-sm' %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
