@@ -13,7 +13,6 @@
   <body>
     <header>
       <%= link_to 'Bookers', root_path %>
-
       <nav>
         <ul>
           <% if user_signed_in? %>
@@ -47,7 +46,13 @@
       </nav>
     </header>
 
-    <%= yield %>
+    <main>
+      <div class="container">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
 
     <footer class="mt-5">
       <p class="text-center m-0">CopyRight Infratop.inc</p>
