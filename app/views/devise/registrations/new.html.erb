@@ -1,34 +1,36 @@
-<div class="col-10">
+<div class="col-4 mx-auto">
   <h2>Sign up</h2>
 
-  <%= form_with model:@user, url: user_registration_path do |f| %>
+  <%= form_with model:@user, url: user_registration_path, class: 'mb-2' do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :name %><br>
-      <%= f.text_field :name, autofocus: true %>
+      <%= f.text_field :name, autofocus: true, class: 'form-control' %>
     </div>
 
-    <div class="field">
-      <%= f.label :email %><br/>
-      <%= f.email_field :email, autocomplete: "email" %>
+    <div class="form-group">
+      <%= f.label :email %><br>
+      <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <small class="text-muted">
+        <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </small><br>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up", class: 'btn btn-success btn-sm mt-3' %>
+      <%= f.submit "Sign up", class: 'btn btn-success' %>
     </div>
   <% end %>
 
