@@ -1,0 +1,10 @@
+<div class="col-12">
+  <ul class="alert alert-danger">
+    <h3 class="alert-heading">
+      <%= model.errors.count %> errors prohibited this obj from being saved:
+    </h3>
+    <% model.errors.full_messages.each do |message| %>
+      <li class="ml-3"><%= message %></li>
+    <% end %>
+  </ul>
+</div>
