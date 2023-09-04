@@ -16,8 +16,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    redirect_to user_path(current_user)
+    if current_user.update(user_params)
+      flash[:notice] = 'Profile updated successfully.'
+      redirect_to user_path(current_user)
+    end
   end
 
   private
