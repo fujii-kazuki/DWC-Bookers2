@@ -1,3 +1,7 @@
+<% if @book.errors.any? %>
+  <%= render 'layouts/error-message-list', model: @book %>
+<% end %>
+
 <%= render 'layouts/sidebar' %>
 
 <div class="col-8 offset-1">
