@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @user = current_user
     @book = Book.new
@@ -12,7 +14,7 @@ class BooksController < ApplicationController
     @user = @book.user
     if @book.save
       flash[:notice] = 'Book posted successfully.'
-      redirect_to book_path(book)
+      redirect_to book_path(@book)
     else
       render :index
     end
